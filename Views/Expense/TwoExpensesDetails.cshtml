@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Expense_Tracker.Models.Expense>
+
+
+
+<p>Breakdown of Expenses for two date range selection</p>
+<table class="table table-striped table-bordered" style="width:100%" id="globeTable">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpenseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpenseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+             
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,91 @@
+﻿@model Expense_Tracker.Models.VModels.VMExpenses
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<form asp-action="Create" id="expenseForms">
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["msg"]
+        </div>
+    }
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-row">
+
+        <div class="form-group col-md-6" id="calender-container">
+            <label asp-for="ExpenseDate" class="control-label"></label>
+            <div class="input-group date" id="datepicker" data-date-format="MM-dd-yyyy">
+                <input asp-for="ExpenseDate" type="text" class="form-control" />
+                <span class="input-group-addon">
+                    <i class="fas fa-pen"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+
+            <label asp-for="Amount" class="control-label"></label>
+            <input asp-for="Amount" class="form-control" />
+            <span asp-validation-for="Amount" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+
+
+        <div class="form-group col-md-6 ">
+            <label asp-for="Category" class="control-label"></label>
+            <select asp-for="CategoryId" class="form-control" asp-items="@Model.CategoryList">
+                <option selected>--Select Expense Category--</option>
+
+            </select>
+            <span asp-validation-for="Category" class="text-danger"></span>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="Index">View all</a>
+</div>
+
+@section Scripts {
+<script type="text/javascript">
+    $("#expenseForms").validate({
+        error: function (label) {
+            $(this).addClass("error");
+        },
+        event: "submit",
+        rules: {
+            Amount: {
+                required: true
+            },
+            ExpenseDate: {
+                required: true
+            },
+            Category: {
+                required: true
+            }
+        },
+        messages: {
+            Amount: {
+                required: ' Please enter amount. '
+            },
+            ExpenseDate: {
+                required: ' Please select expense date. '
+            },
+            Category: {
+                required: ' Please select category. '
+            }
+        }
+    });
+</script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

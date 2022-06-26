@@ -1,0 +1,80 @@
+﻿@model Expense_Tracker.Models.VModels.ExpenseRangeVm
+
+
+
+
+<form asp-action="TwoExpensesDetails" id="dateForms">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <label asp-for="StartDate" class="control-label">Start Date</label>
+            <div class="input-group date" id="startdate" data-date-format="MM-dd-yyyy">
+                <input asp-for="StartDate" type="text" class="form-control" />
+                <span class="input-group-addon">
+                    <i class="fas fa-pen"></i>
+                </span>
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+
+
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label asp-for="EndDate" class="control-label">End Date</label>
+            <div class="input-group date" id="enddate" data-date-format="MM-dd-yyyy">
+                <input asp-for="EndDate" type="text" class="form-control" />
+                <span class="input-group-addon">
+                    <i class="fas fa-pen"></i>
+                </span>
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>
+
+
+<style type="text/css">
+    label.error {
+        color: red;
+    }
+</style>
+<script type="text/javascript">
+
+
+            $("#dateForms").validate({
+                error: function (label) {
+                    $(this).addClass("error");
+                },
+                event: "submit",
+                rules: {
+                    StartDate: {
+                        required: true
+                    },
+                    EndDate: {
+                        required: true
+                    }
+                },
+                messages: {
+                    StartDate: {
+                        required: ' Please select start date. '
+                    },
+                    EndDate: {
+                        required: ' Please select end date. '
+                    }
+                }
+            });
+
+
+
+
+
+</script>
+    }
